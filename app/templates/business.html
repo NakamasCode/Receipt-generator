@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Business Info{% endblock %}
+
+{% block content %}
+<h2>Business Info</h2>
+<form method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label class="form-label">Business Name</label>
+        <input type="text" class="form-control" name="name" value="{{ business.name if business else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Contact</label>
+        <input type="text" class="form-control" name="contact" value="{{ business.contact if business else '' }}">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" name="email" value="{{ business.email if business else '' }}">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Logo URL</label>
+        <input type="url" class="form-control" name="logo_url" value="{{ business.logo_url if business else '' }}">
+        <div class="form-text">Or upload a file below</div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Upload Logo</label>
+        <input type="file" class="form-control" name="logo_file">
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+{% if business and business.logo_url %}
+<div class="mt-4">
+    <h5>Current Logo:</h5>
+    <img src="{{ business.logo_url }}" alt="Logo" class="img-fluid" style="max-width: 200px;">
+</div>
+{% endif %}
+{% endblock %}
