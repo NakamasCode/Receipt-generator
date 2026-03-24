@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+import os
 import cloudinary
 
 db = SQLAlchemy()
@@ -16,9 +17,9 @@ def create_app():
         
     return app
 
-
 cloudinary.config(
-    cloud_name = "dv4tulgpd",
-    api_key = "636788582287618",
-    api_secret = "PBTwBRSJMo6g4RqoCF_jQFCDIqM"
+    cloud_name=os.environ.get("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.environ.get("CLOUDINARY_API_KEY"),
+    api_secret=os.environ.get("CLOUDINARY_API_SECRET"),
+    secure=True
 )
